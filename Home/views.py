@@ -6,6 +6,7 @@ from Dashboard.models import FavMovies
 
 # Create your views here.
 def home(request):
+    # console.log($.getJSON("https://api.themoviedb.org/3/discover/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb"));
     if request.method == 'POST':
         mn = request.POST.get('mn')
         Movies.objects.create(name=mn)

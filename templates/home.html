@@ -82,44 +82,82 @@
     <main class="container-fluid my-5">
         <div class="container-fluid d-flex justify-content-center my-5">
             {% if featured %}
+            <script>
+
+                // Defining async function
+                async function getapi(fi, id) {
+
+                    // api url
+                    const url =
+                        "https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query="+fi;
+
+                    // Storing response
+                    const response = await fetch(url);
+
+                    // Storing data in form of JSON
+                    var data = await response.json();
+                    
+                    try {
+                        // Showing Data
+                        document.getElementById(id).src = "http://image.tmdb.org/t/p/w500/" + data.results[0].poster_path;
+                    } catch (error) {
+                        console.log(data);
+                        console.log(error);
+                    }
+                }
+
+                // Calling that async function
+                getapi("{{featured.1}}","fi1");
+                getapi("{{featured.2}}","fi2");
+                getapi("{{featured.3}}","fi3");
+
+            </script>
             <div id="featuredMovies" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                  <button type="button" data-bs-target="#featuredMovies" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                  <button type="button" data-bs-target="#featuredMovies" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                  <button type="button" data-bs-target="#featuredMovies" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#featuredMovies" data-bs-slide-to="0" class="active"
+                        aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#featuredMovies" data-bs-slide-to="1"
+                        aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#featuredMovies" data-bs-slide-to="2"
+                        aria-label="Slide 3"></button>
                 </div>
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img src="https://via.placeholder.com/900x350?text=First+Movie+on+the+List" class="d-block w-100" alt="featured">
-                    <div class="carousel-caption d-none d-md-block" style="color: black;">
-                      <h5>{{featured.1}} <span class="badge rounded-pill bg-danger">Hottest</span></h5>
-                      <p>Its the Top Favourite Movies Right Now</p>
+                <div style="height: 500px; width: 800px;" class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img height="500px" width="800px" id="fi1" src="https://via.placeholder.com/800x500?text=First+Movie+on+the+List"
+                            class="d-block w-100" alt="featured">
+                        <div class="carousel-caption d-none d-md-block" style="color: black;">
+                            <h5>{{featured.1}} <span class="badge rounded-pill bg-danger">Hottest</span></h5>
+                            <p>Its the Top Favourite Movies Right Now</p>
+                        </div>
                     </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://via.placeholder.com/900x350?text=Second+Movie+on+the+List" class="d-block w-100" alt="featured">
-                    <div class="carousel-caption d-none d-md-block" style="color: black;">
-                      <h5>{{featured.2}} <span class="badge rounded-pill bg-primary">Trending</span></h5>
-                      <p>2nd Most Favourite Movies</p>
+                    <div class="carousel-item">
+                        <img height="500px" width="800px" id="fi2" src="https://via.placeholder.com/800x500?text=Second+Movie+on+the+List"
+                            class="d-block w-100" alt="featured">
+                        <div class="carousel-caption d-none d-md-block" style="color: black;">
+                            <h5>{{featured.2}} <span class="badge rounded-pill bg-primary">Trending</span></h5>
+                            <p>2nd Most Favourite Movies</p>
+                        </div>
                     </div>
-                  </div>
-                  <div class="carousel-item">
-                    <img src="https://via.placeholder.com/900x350?text=Third+Movie+on+the+List" class="d-block w-100" alt="featured">
-                    <div class="carousel-caption d-none d-md-block" style="color: black;">
-                      <h5>{{featured.3}} <span class="badge rounded-pill bg-dark">in competition</span></h5>
-                      <p>3rd Most Favourite, Getting Ranks up Soon</p>
+                    <div class="carousel-item">
+                        <img height="500px" width="800px" id="fi3" src="https://via.placeholder.com/800x500?text=Third+Movie+on+the+List"
+                            class="d-block w-100" alt="featured">
+                        <div class="carousel-caption d-none d-md-block" style="color: black;">
+                            <h5>{{featured.3}} <span class="badge rounded-pill bg-dark">in competition</span></h5>
+                            <p>3rd Most Favourite, Getting Ranks up Soon</p>
+                        </div>
                     </div>
-                  </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#featuredMovies" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
+                <button class="carousel-control-prev" type="button" data-bs-target="#featuredMovies"
+                    data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#featuredMovies" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
+                <button class="carousel-control-next" type="button" data-bs-target="#featuredMovies"
+                    data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
                 </button>
-              </div>
+            </div>
             {% endif %}
         </div>
         <div class="container my-5">
@@ -131,7 +169,7 @@
                             <form method="post">
                                 {% csrf_token %}
                                 <div class="input-group py-2">
-                                    <input type="text" class="form-control" placeholder="Movie Name" name='mn'>
+                                    <input type="text" class="form-control" placeholder="Movie Name" name='mn' required>
                                     <button class="btn btn-outline-secondary" type="submit" data-bs-toggle="tooltip"
                                         data-bs-placement="top" title="Add a New Movie"><i
                                             class="bi bi-plus-circle"></i></button>
@@ -163,7 +201,8 @@
     <!-- Fixed Footer -->
     <footer class="footer text-center mt-auto py-3 bg-light">
         <div class="container">
-            <span class="text-muted">2021 | Movies Adda</span>
+            <span class="text-muted">2021 | Movies Adda | By <a style="color: red; text-decoration: none;"
+                    href="https://keshav.csegeeks.com">Keshav</a></span>
         </div>
     </footer>
 </body>
