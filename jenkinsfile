@@ -5,14 +5,15 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checking In...'
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ksharma20/MoviesAdda.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/jenkins']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/ksharma20/MoviesAdda.git']]])
             }
         }
         stage('Build') {
             steps {
                 echo 'Building....'
-                git branch: 'main', url: 'https://github.com/ksharma20/MoviesAdda.git'
+                git branch: 'jenkins', url: 'https://github.com/ksharma20/MoviesAdda.git'
                 sh setup.sh
+                sh 'python manage.py runserver'
             }
         }
         stage('Test') {
