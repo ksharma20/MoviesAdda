@@ -89,14 +89,14 @@
 
                     // api url
                     const url =
-                        "https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query="+fi;
+                        "https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=" + fi;
 
                     // Storing response
                     const response = await fetch(url);
 
                     // Storing data in form of JSON
                     var data = await response.json();
-                    
+
                     try {
                         // Showing Data
                         document.getElementById(id).src = "http://image.tmdb.org/t/p/w500/" + data.results[0].poster_path;
@@ -107,9 +107,9 @@
                 }
 
                 // Calling that async function
-                getapi("{{featured.1}}","fi1");
-                getapi("{{featured.2}}","fi2");
-                getapi("{{featured.3}}","fi3");
+                getapi("{{featured.1}}", "fi1");
+                getapi("{{featured.2}}", "fi2");
+                getapi("{{featured.3}}", "fi3");
 
             </script>
             <div id="featuredMovies" class="carousel slide" data-bs-ride="carousel">
@@ -123,27 +123,30 @@
                 </div>
                 <div style="height: 500px; width: 800px;" class="carousel-inner">
                     <div class="carousel-item active">
-                        <img height="500px" width="800px" id="fi1" src="https://via.placeholder.com/800x500?text=First+Movie+on+the+List"
-                            class="d-block w-100" alt="featured">
+                        <img height="500px" width="800px" id="fi1"
+                            src="https://via.placeholder.com/800x500?text=First+Movie+on+the+List" class="d-block w-100"
+                            alt="featured">
                         <div class="carousel-caption d-none d-md-block" style="color: black;">
                             <h5>{{featured.1}} <span class="badge rounded-pill bg-danger">Hottest</span></h5>
-                            <p>Its the Top Favourite Movies Right Now</p>
+                            <p>Its the Top Favorite Movies Right Now</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img height="500px" width="800px" id="fi2" src="https://via.placeholder.com/800x500?text=Second+Movie+on+the+List"
+                        <img height="500px" width="800px" id="fi2"
+                            src="https://via.placeholder.com/800x500?text=Second+Movie+on+the+List"
                             class="d-block w-100" alt="featured">
                         <div class="carousel-caption d-none d-md-block" style="color: black;">
                             <h5>{{featured.2}} <span class="badge rounded-pill bg-primary">Trending</span></h5>
-                            <p>2nd Most Favourite Movies</p>
+                            <p>2nd Most Favorite Movies</p>
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <img height="500px" width="800px" id="fi3" src="https://via.placeholder.com/800x500?text=Third+Movie+on+the+List"
-                            class="d-block w-100" alt="featured">
+                        <img height="500px" width="800px" id="fi3"
+                            src="https://via.placeholder.com/800x500?text=Third+Movie+on+the+List" class="d-block w-100"
+                            alt="featured">
                         <div class="carousel-caption d-none d-md-block" style="color: black;">
                             <h5>{{featured.3}} <span class="badge rounded-pill bg-dark">in competition</span></h5>
-                            <p>3rd Most Favourite, Getting Ranks up Soon</p>
+                            <p>3rd Most Favorite, Getting Ranks up Soon</p>
                         </div>
                     </div>
                 </div>

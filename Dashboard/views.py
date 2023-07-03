@@ -6,11 +6,10 @@ from Home.models import Movies
 # Create your views here.
 def dash(request):
     if request.user.is_authenticated:
-        context = {}
-        context['Movies'] = reversed(Movies.objects.all())
+        context = {'Movies': reversed(Movies.objects.all())}
         context['FavMovies'] = FavMovies.objects.filter(user=request.user)
         return render(request, 'dashboard.html', context)
-    
+
 
     return redirect('/')
 

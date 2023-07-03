@@ -11,7 +11,6 @@ def home(request):
         mn = request.POST.get('mn')
         Movies.objects.create(name=mn)
 
-    context = {}
     movies = Movies.objects.all()
 
     mr = [0,0,0]
@@ -37,12 +36,13 @@ def home(request):
 
         movie.save()
 
-    context['Movies'] = reversed(movies)
-    context['featured'] = {'1': mn[0], '2': mn[1], '3': mn[2]}
-    
+    context = {
+        'Movies': reversed(movies),
+        'featured': {'1': mn[0], '2': mn[1], '3': mn[2]},
+    }
     if request.user.is_authenticated:
         context['user_logged'] = True
-    
+
     return render(request, 'home.html', context)
 
 def ulogin(request):
@@ -50,13 +50,12 @@ def ulogin(request):
     if request.method == 'POST':
         uname = request.POST.get('uname')
         passwd = request.POST.get('passwd')
-        user = authenticate(request, username=uname, password=passwd)
-        if user:
+        if user := authenticate(request, username=uname, password=passwd):
             login(request, user)
             return redirect('/dashboard/')
     if request.user.is_authenticated:
         logout(request)
-    
+
     return redirect('/')
         
 
