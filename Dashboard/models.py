@@ -9,6 +9,6 @@ class FavMovies(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name.name+' by '+self.user.username
+        return f'{self.name.name} by {self.user.username}'
 
 
